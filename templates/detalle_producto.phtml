@@ -1,0 +1,20 @@
+<?php require 'templates/layout/header.phtml'; ?>
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="card">
+                    <img src=<?=$producto->URL_imagen?> class="card-img-top" alt="Producto 1">
+                    <div class="card-body">
+                        <h5 class="card-title"><?= $producto->Nombre ?></h5>
+                        <p class="card-text"><?= $producto->Precio ?></p>
+                        <a href="<?= BASE_URL ?>" class="btn btn-primary">Inicio</a>
+                    </div>
+                </div>
+            </div>
+        
+    </div>
+</div>
+
+
+
+
+
+<?php require 'templates/layout/footer.phtml'; ?>
