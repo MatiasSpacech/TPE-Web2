@@ -1,20 +1,14 @@
 <?php require 'templates/layout/header.phtml'; ?>
-    <div class="container mt-5">
-    <div class="row">
-        <?php foreach ($productos as $producto): ?>         
+<h1>Producto de la categoria: <?= $nombreCategoria ?></h1>    
+<div class="container mt-5">
+    <div class="row">        
+        <?php foreach ($productos as $producto): ?>       
             <div class="col-12 col-md-6 col-lg-4 mb-4">
                 <div class="card">
                     <img src=<?=$producto->URL_imagen?> class="card-img-top" alt="Producto 1">
                     <div class="card-body">
                         <h5 class="card-title"><?= $producto->Nombre ?></h5>
-                        <p class="card-text"><?= $producto->Precio ?></p>                       
-                        <?php  $categoriaProducto = "Teclados";
-                        foreach ($categorias as $categoria){                      
-                            if ($categoria->ID_Categorias == $producto->ID_Categorias){                    
-                            $categoriaProducto= $categoria->Nombre;                   
-                            }                            
-                        } ?>  
-                        <a href="categorias/<?= $categoriaProducto ?>" ><?= $categoriaProducto ?></a>
+                        <p class="card-text"><?= $producto->Precio ?></p>              
                         <a href="<?= BASE_URL ?>productos/<?= $producto->ID_Productos ?>" class="btn btn-primary">Ver más</a>
                         <a href="<?= BASE_URL ?>formEditarProducto/<?= $producto->ID_Productos ?>" class="btn btn-primary">Editar</a>
                     </div>

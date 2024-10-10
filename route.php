@@ -26,6 +26,29 @@ switch ($params[0]) {
         $controller = new ProductoController();
         $controller->agregarProducto();    
         break;
+    case 'admin':
+        $controller = new ProductoController();
+        $controller->mostrarAdmin(); 
+        break;
+    case 'formEditarProducto':        
+        $controller = new ProductoController();
+        if (isset($params[1]))
+            $controller->formProducto($params[1]);         
+        break;
+    case 'editar':        
+            $controller = new ProductoController();
+            if (isset($params[1]))
+                $controller->updateProducto($params[1]);         
+            break;    
+    case 'formProducto':
+        $controller = new ProductoController();
+        $controller->nuevoProducto();
+        break;
+    case 'eliminarProducto':
+        $controller = new ProductoController();
+            if (isset($params[1]))
+                $controller->deleteProducto($params[1]);         
+            break;
     case 'categorias':
         $controller = new CategoriaController();
         if (isset($params[1]))
@@ -33,10 +56,28 @@ switch ($params[0]) {
         else
             $controller->mostrarCategorias();
         break;
-    case 'formularioNuevoProducto':
-        $view = new ProductoView();
-        $view->VerFormularioNuevoProducto();
+    case 'formCategoria':
+        $controller = new CategoriaController();
+        $controller->nuevaCategoria();
         break;
+
+    case 'nuevaCategoria':
+        $controller = new CategoriaController();
+        $controller->agregarCategoria();
+        break;
+    case 'formEditarCategoria':        
+        $controller = new CategoriaController();
+        if (isset($params[1]))
+            $controller->formCategoria($params[1]);         
+        break;
+    case 'editarCategoria':        
+        $controller = new CategoriaController();
+        if (isset($params[1]))
+          $controller->updateCategoria($params[1]);         
+        break;    
+
+
+    
     
     default:
         # code...

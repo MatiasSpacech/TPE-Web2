@@ -12,7 +12,7 @@ class CategoriaModel{
         return $categorias;
     }
     public function getCategoria($id) {    
-        $query = $this->db->prepare('SELECT * FROM categoria WHERE ID_Categorias = ?');
+        $query = $this->db->prepare('SELECT * FROM categorias WHERE ID_Categorias = ?');
         $query->execute([$id]);   
     
         $categoria = $query->fetch(PDO::FETCH_OBJ);
@@ -23,9 +23,9 @@ class CategoriaModel{
         $query = $this->db->prepare('SELECT productos.ID_Productos, productos.Nombre, productos.Descripcion, productos.Precio, productos.Marca, productos.URL_imagen  FROM productos JOIN categorias ON productos.ID_Categorias = categorias.ID_Categorias WHERE categorias.Nombre =?');
         $query->execute([$Nombre]);   
     
-        $categoria = $query->fetchAll(PDO::FETCH_OBJ);
+        $productos = $query->fetchAll(PDO::FETCH_OBJ);
     
-        return $categoria;
+        return $productos;
     }
     public function agregarCategoria($Nombre, $Descripcion, $URL_imagen) { 
         $Nombre = htmlspecialchars($Nombre);
@@ -49,5 +49,6 @@ class CategoriaModel{
         $query = $this->db->prepare('UPDATE `categorias` SET `Nombre` = ? , `Descripcion` = ?, `URL_imagen` = ? WHERE ID_Categorias` = ?' );
         $query->execute([$Nombre, $Descripcion, $URL_imagen, $id]);
     }
+    
     
 }

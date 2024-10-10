@@ -1,0 +1,51 @@
+<?php require_once 'templates/layout/header.phtml'; ?>
+<form action="editar/<?= $producto->ID_Productos ?>" method="POST">
+    <div class="row">
+        <div class="col-9">
+            <div class="form-group">
+                <label>Nombre</label>
+                <input required name="nombre"  value = "<?= $producto->Nombre ?>" type="text" class="form-control">
+            </div>
+        </div>
+
+        <div class="col-3">
+            <div class="form-group">
+                <label>Categoria</label>
+                <select required name="categoria" class="form-control">
+                    <?php foreach ($categorias as $categoria): ?>
+                        <option value="<?=$categoria->ID_Categorias?>"><?=$categoria->Nombre ?></option>
+                    <?php endforeach ?>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+    <div class="col-6">
+            <div class="form-group">
+                <label>Precio</label>
+                <input required name="precio" value ="<?= $producto->Precio ?>" type="number" class="form-control">
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <label>Marca</label>
+                <input required name="marca"  value="<?= $producto->Marca?>" type="text" class="form-control">
+            </div>
+        </div>
+
+        </div>
+        <div class="col-9">
+            <div class="form-group">
+                <label>URL de imagen:</label>
+                <input required name="URL_imagen" value ="<?= $producto->URL_imagen ?>" value= <?= $producto->URL_imagen ?> type="text" class="form-control">
+            </div>
+        </div>
+
+    <div class="form-group">
+        <label>Descripcion</label>
+        <textarea name="descripcion" placeholder="<?= $producto->Descripcion ?>" value="<?= $producto->Descripcion ?>" class="form-control" rows="3"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-2">Guardar</button>
+</form>
+<?php require_once 'templates/layout/footer.phtml'; ?>
