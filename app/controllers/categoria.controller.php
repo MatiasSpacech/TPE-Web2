@@ -69,16 +69,16 @@ class CategoriaController{
         $URL_imagen = $_POST['URL_imagen'];
         //verificar que exista producto
         if($this->model->getCategoria($id)){
-            $this->model->editarCategoria($nombre, $URL_imagen, $categoria, $id);
+            $this->model->editarCategoria($nombre, $descripcion, $URL_imagen, $id);
         }
         else 
-        return $this->view->mostrarError('No existe el producto');
+        return $this->view->mostrarError('No existe la categoria');
         header('Location: ' . BASE_URL);
 
     }
-    public function deleteProducto($id){
-        if($this->modelProducto->getProducto($id)){
-            $this->modelProducto->borrarProducto($id);
+    public function deleteCategoria($id){
+        if($this->model->getCategoria($id)){
+            $this->model->borrarCategoria($id);
         }
         header('Location: ' . BASE_URL . '/admin');
 

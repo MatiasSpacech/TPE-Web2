@@ -1,5 +1,5 @@
 <?php require 'templates/layout/header.phtml'; ?>
-<form action="nuevaCategoria" method="POST" class="my-4">
+<form action="editarCategoria/<?= $categoria->ID_Categorias ?>" method="POST" class="my-4">
     <div class="row">
         <div class="col-9">
             <div class="form-group">
@@ -23,7 +23,7 @@
 
     <div class="form-group">
         <label>Descripcion</label>
-        <textarea name="descripcion"  value = "<?= $categoria->Descripcion ?>" placeholder = "<?= $categoria->Descripcion ?>" class="form-control" rows="3"></textarea>
+        <textarea name="descripcion"  "<?= $categoria->Descripcion ?>" placeholder = "<?= $categoria->Descripcion ?>" class="form-control" rows="3">"<?= $categoria->Descripcion ?>"</textarea>
     </div>
 
     <button type="submit" class="btn btn-primary mt-2">Guardar</button>

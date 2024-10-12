@@ -39,14 +39,14 @@ class CategoriaModel{
         return $id;
     }
     public function borrarCategoria($id) {
-        $query = $this->db->prepare('DELETE FROM categorias WHERE id = ?');
+        $query = $this->db->prepare('DELETE FROM categorias WHERE `ID_Categorias` = ?');
         $query->execute([$id]);
     }
 
     public function editarCategoria($Nombre, $Descripcion, $URL_imagen, $id) { 
-        $Nombre = htmlspecialchars($Nombre);
-        $Descripcion = htmlspecialchars($Descripcion);               
-        $query = $this->db->prepare('UPDATE `categorias` SET `Nombre` = ? , `Descripcion` = ?, `URL_imagen` = ? WHERE ID_Categorias` = ?' );
+        //$Nombre = htmlspecialchars($Nombre);
+        //$Descripcion = htmlspecialchars($Descripcion);               
+        $query = $this->db->prepare('UPDATE categorias SET `Nombre` = ? , `Descripcion` = ?, `URL_imagen` = ? WHERE `ID_Categorias` = ?' );
         $query->execute([$Nombre, $Descripcion, $URL_imagen, $id]);
     }
     

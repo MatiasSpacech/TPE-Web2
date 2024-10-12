@@ -51,7 +51,7 @@
                     <th>Acciones</th>
                 </tr>
             </thead>
-            <tbody>
+           
             <?php foreach ($categorias as $categoria): ?>
                 <tr>
                     <td><img src=<?=$categoria->URL_imagen?> alt="Categoría" width="50"></td>
@@ -60,10 +60,7 @@
                     <td>
                         <div class="btn-group btn-group-vertical">
                         <a href="<?= BASE_URL ?>formEditarCategoria/<?= $categoria->ID_Categorias ?>" class="btn btn-primary">Editar</a>
-                            <button class="btn btn-eliminar">Eliminar</button>
-                        </div>
-                    </td>
-                </tr>
+                        <a href="<?= BASE_URL ?>eliminarCategoria/<?= $categoria->ID_Categorias ?>" class="btn btn-secondary">Eliminar</a>
             <?php endforeach; ?>
             </tbody>
         </table>
