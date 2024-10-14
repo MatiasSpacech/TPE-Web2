@@ -1,0 +1,68 @@
+<?php require_once 'templates/layout/header.phtml'; ?>
+<div class="container">
+        <h1 class="mt-4">Panel de Administración</h1>
+        
+        <!-- Subtítulo y Tabla de Productos -->
+        <h2>Productos</h2><a  href="formProducto" class="btn btn-primary">Agregar Producto</a>
+        <table class="table table-dark table-striped">
+            <thead>
+                <tr>
+                    <th>Imagen</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Precio</th>
+                    <th>categoria</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($productos as $producto): ?> 
+                <tr>
+                    <td><img src=<?= $producto->URL_imagen ?> alt="Producto" width="50"></td>
+                    <td><?= $producto->Nombre ?></td>
+                    <td><?= $producto->Descripcion ?></td>
+                    <td><?= $producto->Precio ?></td>
+                    <?php  foreach ($categorias as $categoria){
+                            if ($categoria->ID_Categorias == $producto->ID_Categorias){                    
+                                $categoriaProcucto= $categoria->Nombre;                    
+                            }
+                    } ?>
+                    <td><a href="categorias/<?= $categoriaProcucto ?>" ><?= $categoriaProcucto ?></a></td>
+                    <td>
+                        <div class="btn-group btn-group-vertical">
+                        <a href="<?= BASE_URL ?>formEditarProducto/<?= $producto->ID_Productos ?>" class="btn btn-primary">Editar</a>
+                        <a href="<?= BASE_URL ?>eliminarProducto/<?= $producto->ID_Productos ?>" class="btn btn-secondary">Eliminar</a>
+                        </div>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            
+            </tbody>
+        </table>
+
+        
+        <h2>Categorías</h2><a  href="formCategoria" class="btn btn-primary">Agregar Categoria</a>
+        <table class="table table-dark table-striped">
+            <thead>
+                <tr>
+                    <th>Imagen</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+           
+            <?php foreach ($categorias as $categoria): ?>
+                <tr>
+                    <td><img src=<?=$categoria->URL_imagen?> alt="Categoría" width="50"></td>
+                    <td><?=$categoria->Nombre?></td>
+                    <td><?=$categoria->Descripcion?></td>
+                    <td>
+                        <div class="btn-group btn-group-vertical">
+                        <a href="<?= BASE_URL ?>formEditarCategoria/<?= $categoria->ID_Categorias ?>" class="btn btn-primary">Editar</a>
+                        <a href="<?= BASE_URL ?>eliminarCategoria/<?= $categoria->ID_Categorias ?>" class="btn btn-secondary">Eliminar</a>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+    <?php require_once 'templates/layout/footer.phtml'; ?>
