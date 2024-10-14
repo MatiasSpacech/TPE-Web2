@@ -8,9 +8,9 @@ class ProductoController{
     private $view;
     private $modelCategoria;
 
-    public function __construct(){
+    public function __construct($res){
         $this->modelProducto = new ProductoModel();
-        $this->view = new ProductoView();
+        $this->view = new ProductoView($res->user);
         $this->modelCategoria = new CategoriaModel();
     }
 

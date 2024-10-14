@@ -10,7 +10,9 @@
                         <h5 class="card-title"><?= $producto->Nombre ?></h5>
                         <p class="card-text"><?= $producto->Precio ?></p>              
                         <a href="<?= BASE_URL ?>productos/<?= $producto->ID_Productos ?>" class="btn btn-primary">Ver más</a>
-                        <a href="<?= BASE_URL ?>formEditarProducto/<?= $producto->ID_Productos ?>" class="btn btn-primary">Editar</a>
+                        <?php if ($this->user):?>
+                            <a href="<?= BASE_URL ?>formEditarProducto/<?= $producto->ID_Productos ?>" class="btn btn-primary">Editar</a>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>

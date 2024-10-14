@@ -5,9 +5,9 @@ class CategoriaController{
     private $model;
     private $view;
 
-    public function __construct(){
+    public function __construct($res){
         $this->model = new CategoriaModel();
-        $this->view = new CategoriaView();
+        $this->view = new CategoriaView($res->user);
     }
     public function mostrarCategorias(){
         $categorias = $this->model->getCategorias();

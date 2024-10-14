@@ -1,6 +1,10 @@
 <?php
 
 class ProductoView{
+    private $user=null;
+    public function __construct($user) {
+        $this->user = $user;
+    }
 
 
     public function VerProductos($productos,$categorias){ 

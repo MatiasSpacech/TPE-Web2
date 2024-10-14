@@ -1,6 +1,9 @@
 <?php
 class CategoriaView{
-
+    private $user=null;
+    public function __construct($user) {
+        $this->user = $user;
+    }
 
    public function verCategorias($categorias){
     $model= new ProductoModel();
