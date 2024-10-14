@@ -1,12 +1,7 @@
 <?php
-require_once 'config.php';
-class CategoriaModel{
-    private $db;
-    public function __construct(){
-        $this->db = new PDO('mysql:host='. MYSQL_HOST .';dbname='. MYSQL_DB .';charset=utf8', MYSQL_USER, MYSQL_PASS);
-        //$this->deploy();
-
-    }
+require_once 'app/models/model.php';
+class CategoriaModel extends Model{
+    
     public function getCategorias(){
         $query = $this->db->prepare('SELECT * FROM categorias');    
         $query->execute();
