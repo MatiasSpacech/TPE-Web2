@@ -4,9 +4,16 @@ require_once 'config.php';
         protected $db;
 
         function __construct() {
-            $this->db = new PDO('mysql:host='. MYSQL_HOST .';dbname='. MYSQL_DB .';charset=utf8', MYSQL_USER, MYSQL_PASS);
+            //$this->db = new PDO('mysql:host='. MYSQL_HOST .';dbname='. MYSQL_DB .';charset=utf8', MYSQL_USER, MYSQL_PASS);
+            //$this->deploy();
+            // Conexión al servidor MySQL sin especificar una base de datos
+            $pdo = new PDO('mysql:host=' . MYSQL_HOST, MYSQL_USER, MYSQL_PASS);
+            // Crear la base de datos si no existe
+            $pdo->exec("CREATE DATABASE IF NOT EXISTS `" . MYSQL_DB . "` CHARACTER SET utf8 COLLATE utf8_general_ci");
+            // Conectarse a la base de datos recién creada
+            $pdo = new PDO('mysql:host=' . MYSQL_HOST . ';dbname=' . MYSQL_DB . ';charset=utf8', MYSQL_USER, MYSQL_PASS);
             $this->deploy();
-        }
+          }
 
         function deploy() {
             // Chequear si hay tablas
@@ -25,17 +32,7 @@ require_once 'config.php';
                 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
                 /*!40101 SET NAMES utf8mb4 */;
 
-                --
-                -- Base de datos: `tpeespecial`
-                --
-                CREATE DATABASE IF NOT EXISTS `tpeespecial` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci;
-                USE `tpeespecial`;
-
-                -- --------------------------------------------------------
-
-                --
-                -- Estructura de tabla para la tabla `categorias`
-                --
+               
 
                 CREATE TABLE `categorias` (
                   `ID_Categorias` int(11) NOT NULL,
