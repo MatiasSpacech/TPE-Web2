@@ -4,28 +4,22 @@
         <div class="col-9">
             <div class="form-group">
                 <label>Nombre</label>
-                <input required name="nombre" value = "<?= $categoria->Nombre ?>" type="text" class="form-control">
+                <input required name="nombre" value = "<?= htmlspecialchars($categoria->Nombre) ?>" type="text" class="form-control">
             </div>
-        </div>
-
-       
+        </div>       
     </div>
     <div class="row">
-    
-
         </div>
         <div class="col-9">
             <div class="form-group">
                 <label>URL de imagen:</label>
-                <input required name="URL_imagen" value = "<?= $categoria->URL_imagen ?>" type="text" class="form-control">
+                <input required name="URL_imagen" value = "<?= htmlspecialchars($categoria->URL_imagen) ?>" type="text" class="form-control">
             </div>
         </div>
-
     <div class="form-group">
         <label>Descripcion</label>
-        <textarea name="descripcion"  "<?= $categoria->Descripcion ?>" placeholder = "<?= $categoria->Descripcion ?>" class="form-control" rows="3">"<?= $categoria->Descripcion ?>"</textarea>
+        <textarea name="descripcion"  class="form-control" rows="3">"<?=  htmlspecialchars($categoria->Descripcion) ?>"</textarea>
     </div>
-
     <button type="submit" class="btn btn-primary mt-2">Guardar</button>
 </form>
 <?php require 'templates/layout/footer.phtml'; ?>

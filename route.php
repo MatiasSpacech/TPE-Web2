@@ -31,16 +31,16 @@ switch ($params[0]) {
             $controller->mostrarProductos();        
         break;
     case 'nuevo':
-        sessionAuthMiddleware($res); // Setea $res->user si existe session
-        verifyAuthMiddleware($res); // Verifica que el usuario esté logueado o redirige a login        
+        sessionAuthMiddleware($res); 
+        verifyAuthMiddleware($res);        
         $controller = new ProductoController($res);
         $controller->agregarProducto();    
-        break;
-    case 'admin':
+        break;    
+    case 'formProducto':
         sessionAuthMiddleware($res); 
         verifyAuthMiddleware($res);
         $controller = new ProductoController($res);
-        $controller->mostrarAdmin(); 
+        $controller->nuevoProducto();
         break;
     case 'formEditarProducto':
         sessionAuthMiddleware($res); 
@@ -56,19 +56,13 @@ switch ($params[0]) {
         if (isset($params[1]))
             $controller->updateProducto($params[1]);         
         break;    
-    case 'formProducto':
-        sessionAuthMiddleware($res); 
-        verifyAuthMiddleware($res);
-        $controller = new ProductoController($res);
-        $controller->nuevoProducto();
-        break;
     case 'eliminarProducto':
         sessionAuthMiddleware($res); 
         verifyAuthMiddleware($res);
         $controller = new ProductoController($res);
             if (isset($params[1]))
                 $controller->deleteProducto($params[1]);         
-            break;
+        break;
     case 'categorias':
         sessionAuthMiddleware($res);        
         $controller = new CategoriaController($res);
@@ -83,7 +77,6 @@ switch ($params[0]) {
         $controller = new CategoriaController($res);
         $controller->nuevaCategoria();
         break;
-
     case 'nuevaCategoria':
         sessionAuthMiddleware($res); 
         verifyAuthMiddleware($res);
@@ -111,6 +104,12 @@ switch ($params[0]) {
         if (isset($params[1]))
             $controller->deleteCategoria($params[1]);         
         break;
+    case 'admin':
+        sessionAuthMiddleware($res); 
+        verifyAuthMiddleware($res);
+        $controller = new ProductoController($res);
+        $controller->mostrarAdmin(); 
+        break;
     case 'showLogin':
         $controller = new AuthController();
         $controller->showLogin();
@@ -121,13 +120,10 @@ switch ($params[0]) {
         break;
     case 'logout':
         $controller = new AuthController();
-        $controller->logout();  
-
-
-    
+        $controller->logout();    
     
     default:
-        # code...
+        echo ("Error 404");
         break;
 }
   

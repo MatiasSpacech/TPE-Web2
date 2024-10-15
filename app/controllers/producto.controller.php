@@ -30,9 +30,9 @@ class ProductoController{
     public function formProducto($id){
         $producto = $this->modelProducto->getProducto($id);
         $categorias = $this->modelCategoria->getCategorias();
-
         return $this->view->verEdicionProducto($producto, $categorias);
     }
+
     public function nuevoProducto(){
         $categorias = $this->modelCategoria->getCategorias();
         return $this->view->VerFormularioNuevoProducto($categorias);
@@ -41,8 +41,7 @@ class ProductoController{
     public function agregarProducto() {
         if (!isset($_POST['nombre']) || empty($_POST['nombre'])) {
             return $this->view->mostrarError('Falta completar el nombre');
-        }
-    
+        }    
         if (!isset($_POST['categoria']) || empty($_POST['categoria'])) {
             return $this->view->mostrarError('Falta completar la categoria');
         }
@@ -69,21 +68,19 @@ class ProductoController{
     
         $id = $this->modelProducto->agregarProducto($nombre, $descripcion, $precio, $marca, $URL_imagen, $categoria);
     
-        // redirijo al home (también podriamos usar un método de una vista para motrar un mensaje de éxito)
+        
         header('Location: ' . BASE_URL);
     }
     public function mostrarAdmin(){
         $productos = $this->modelProducto->getProductos();
         $categorias = $this->modelCategoria->getCategorias();
         return $this->view->verPanelAdmin($productos,$categorias);
-
     }
-
-
+    
     public function updateProducto($id){ 
         if (!isset($_POST['nombre']) || empty($_POST['nombre'])) {
-            return $this->view->mostrarError('Falta completar el nombre');        }
-    
+            return $this->view->mostrarError('Falta completar el nombre');        
+        }    
         if (!isset($_POST['categoria']) || empty($_POST['categoria'])) {
             return $this->view->mostrarError('Falta completar la categoria');
         }
@@ -98,7 +95,8 @@ class ProductoController{
         }
         if (!isset($_POST['URL_imagen']) || empty($_POST['URL_imagen'])) {
             return $this->view->mostrarError('Falta completar la URL de la imagen');
-        }       
+        }
+
         $nombre = $_POST['nombre'];
         $categoria = $_POST['categoria'];
         $precio = $_POST['precio'];
@@ -110,7 +108,7 @@ class ProductoController{
             $this->modelProducto->editarProducto($nombre, $descripcion, $precio, $marca, $URL_imagen, $categoria, $id);
         }
         else
-        return $this->view->mostrarError('No existe el producto');
+            return $this->view->mostrarError('No existe el producto');
         header('Location: ' . BASE_URL);
 
     }
@@ -118,6 +116,8 @@ class ProductoController{
         if($this->modelProducto->getProducto($id)){
             $this->modelProducto->borrarProducto($id);
         }
+        else
+            return $this->view->mostrarError('No existe el producto');
         header('Location: ' . BASE_URL . '/admin');
 
     }

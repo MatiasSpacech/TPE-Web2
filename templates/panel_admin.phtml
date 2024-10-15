@@ -1,8 +1,7 @@
 <?php require_once 'templates/layout/header.phtml'; ?>
 <div class="container">
-        <h1 class="mt-4">Panel de Administración</h1>
+        <h1 class="mt-4">Panel de Administración</h1>        
         
-        <!-- Subtítulo y Tabla de Productos -->
         <h2>Productos</h2><a  href="formProducto" class="btn btn-primary">Agregar Producto</a>
         <table class="table table-dark table-striped">
             <thead>
@@ -18,16 +17,16 @@
             <tbody>
             <?php foreach ($productos as $producto): ?> 
                 <tr>
-                    <td><img src=<?= $producto->URL_imagen ?> alt="Producto" width="50"></td>
-                    <td><?= $producto->Nombre ?></td>
-                    <td><?= $producto->Descripcion ?></td>
-                    <td><?= $producto->Precio ?></td>
+                    <td><img src=<?= htmlspecialchars($producto->URL_imagen) ?> alt="Producto" width="50"></td>
+                    <td><?= htmlspecialchars($producto->Nombre) ?></td>
+                    <td><?= htmlspecialchars($producto->Descripcion) ?></td>
+                    <td><?= htmlspecialchars($producto->Precio) ?></td>
                     <?php  foreach ($categorias as $categoria){
                             if ($categoria->ID_Categorias == $producto->ID_Categorias){                    
                                 $categoriaProcucto= $categoria->Nombre;                    
                             }
                     } ?>
-                    <td><a href="categorias/<?= $categoriaProcucto ?>" ><?= $categoriaProcucto ?></a></td>
+                    <td><a href="categorias/<?= $categoriaProcucto ?>" ><?= htmlspecialchars($categoriaProcucto) ?></a></td>
                     <td>
                         <div class="btn-group btn-group-vertical">
                         <a href="<?= BASE_URL ?>formEditarProducto/<?= $producto->ID_Productos ?>" class="btn btn-primary">Editar</a>
@@ -50,13 +49,12 @@
                     <th>Descripción</th>
                     <th>Acciones</th>
                 </tr>
-            </thead>
-           
+            </thead>           
             <?php foreach ($categorias as $categoria): ?>
                 <tr>
                     <td><img src=<?=$categoria->URL_imagen?> alt="Categoría" width="50"></td>
-                    <td><?=$categoria->Nombre?></td>
-                    <td><?=$categoria->Descripcion?></td>
+                    <td><?=htmlspecialchars($categoria->Nombre)?></td>
+                    <td><?=htmlspecialchars($categoria->Descripcion)?></td>
                     <td>
                         <div class="btn-group btn-group-vertical">
                         <a href="<?= BASE_URL ?>formEditarCategoria/<?= $categoria->ID_Categorias ?>" class="btn btn-primary">Editar</a>

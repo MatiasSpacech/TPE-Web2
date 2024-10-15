@@ -1,17 +1,17 @@
 <?php require 'templates/layout/header.phtml'; ?>
-<h1>Producto de la categoria: <?= $nombreCategoria ?></h1>    
+<h2>Producto de la categoria: <?= htmlspecialchars($nombreCategoria) ?></h2>    
 <div class="container mt-5">
     <div class="row">        
         <?php foreach ($productos as $producto): ?>       
             <div class="col-12 col-md-6 col-lg-4 mb-4">
                 <div class="card">
-                    <img src=<?=$producto->URL_imagen?> class="card-img-top" alt="Producto 1">
+                    <img src=<?=htmlspecialchars($producto->URL_imagen)?> class="card-img-top" alt="Producto 1">
                     <div class="card-body">
-                        <h5 class="card-title"><?= $producto->Nombre ?></h5>
-                        <p class="card-text"><?= $producto->Precio ?></p>              
-                        <a href="<?= BASE_URL ?>productos/<?= $producto->ID_Productos ?>" class="btn btn-primary">Ver más</a>
+                        <h5 class="card-title"><?= htmlspecialchars($producto->Nombre) ?></h5>
+                        <p class="card-text"><?= htmlspecialchars($producto->Precio) ?></p>              
+                        <a href="<?= BASE_URL ?>productos/<?= htmlspecialchars($producto->ID_Productos) ?>" class="btn btn-primary">Ver más</a>
                         <?php if ($this->user):?>
-                            <a href="<?= BASE_URL ?>formEditarProducto/<?= $producto->ID_Productos ?>" class="btn btn-primary">Editar</a>
+                            <a href="<?= BASE_URL ?>formEditarProducto/<?= htmlspecialchars($producto->ID_Productos) ?>" class="btn btn-primary">Editar</a>
                         <?php endif; ?>
                     </div>
                 </div>

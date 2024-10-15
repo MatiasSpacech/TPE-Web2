@@ -11,8 +11,7 @@ class AuthController {
         $this->view = new AuthView();
     }
 
-    public function showLogin() {
-        // Muestro el formulario de login
+    public function showLogin() {       
         return $this->view->showLogin();
     }
 
@@ -30,9 +29,7 @@ class AuthController {
     
         // Verificar que el usuario está en la base de datos
         $userFromDB = $this->model->getUserByEmail($email);
-
-        // password: 123456
-        // $userFromDB->password: $2y$10$xQop0wF1YJ/dKhZcWDqHceUM96S04u73zGeJtU80a1GmM.H5H0EHC
+        
         if($userFromDB && password_verify($password, $userFromDB->password)){
             // Guardo en la sesión el ID del usuario
             session_start();

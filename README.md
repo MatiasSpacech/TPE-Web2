@@ -1,4 +1,4 @@
-# Trabajo Especial primera entrega.
+# Trabajo Especial Segunda entrega.
 
 ## Integrantes:
 
