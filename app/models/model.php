@@ -7,7 +7,7 @@ require_once 'config.php';
             //$this->db = new PDO('mysql:host='. MYSQL_HOST .';dbname='. MYSQL_DB .';charset=utf8', MYSQL_USER, MYSQL_PASS);
             //$this->deploy();
             // Conexión al servidor MySQL sin especificar una base de datos
-            $this->db = new PDO('mysql:host=' . MYSQL_HOST, MYSQL_USER, MYSQL_PASS);
+            $this->db = new PDO('mysql:host='. MYSQL_HOST, MYSQL_USER, MYSQL_PASS);
             // Crear la base de datos si no existe
             $this->db->exec("CREATE DATABASE IF NOT EXISTS `" . MYSQL_DB . "` CHARACTER SET utf8 COLLATE utf8_general_ci");
             // Conectarse a la base de datos recién creada
@@ -19,6 +19,7 @@ require_once 'config.php';
             // Chequear si hay tablas
             $query = $this->db->query('SHOW TABLES');
             $tables = $query->fetchAll(); // Nos devuelve todas las tablas de la db
+            $pass = '$2y$10$Y3d7juaIQNj4F9t4U3iAcOd9NtIA9gqCxX08FnYiHFjQDPTX5ezDa';
             if(count($tables)==0) {
                 // Si no hay crearlas
                 $sql =<<<END
@@ -101,7 +102,7 @@ require_once 'config.php';
                 --
 
                 INSERT INTO `usuario` (`id`, `email`, `password`) VALUES
-                (1, 'webadmin', '$2y$10$Y3d7juaIQNj4F9t4U3iAcOd9NtIA9gqCxX08FnYiHFjQDPTX5ezDa');
+                (1, 'webadmin', '$pass');
 
                 --
                 -- Índices para tablas volcadas
