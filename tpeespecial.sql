@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-10-2024 a las 16:38:01
+-- Tiempo de generación: 15-10-2024 a las 22:42:20
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `tpeespecial`
 --
+CREATE DATABASE IF NOT EXISTS `tpeespecial` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci;
+USE `tpeespecial`;
 
 -- --------------------------------------------------------
 
