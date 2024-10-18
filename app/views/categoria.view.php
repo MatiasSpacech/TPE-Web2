@@ -20,6 +20,7 @@ class CategoriaView{
 
     public function mostrarError($error){
         echo  $error;
+        sleep(2);
     }
 
     public function verEdicionCategoria($categoria){

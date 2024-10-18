@@ -31,11 +31,22 @@ class CategoriaModel extends Model{
         $id = $this->db->lastInsertId();    
         return $id;
     }
-
     public function borrarCategoria($id) {
-        $query = $this->db->prepare('DELETE FROM categorias WHERE `ID_Categorias` = ?');
+        // Verificar si hay artículos asociados a la categoría
+        $query = $this->db->prepare('SELECT COUNT(*) FROM productos WHERE ID_Categorias = ?');
         $query->execute([$id]);
+        $count = $query->fetchColumn();    
+        if ($count > 0) {
+            // Hay artículos asociados, no eliminar la categoría
+            return 'No se puede eliminar la categoría porque tiene artículos asociados.';
+        } else {
+            // No hay artículos asociados, se puede eliminar la categoría
+            $query = $this->db->prepare('DELETE FROM categorias WHERE ID_Categorias = ?');
+            $query->execute([$id]);
+            return 'Categoría eliminada correctamente.';
+        }
     }
+   
 
     public function editarCategoria($Nombre, $Descripcion, $URL_imagen, $id) {                   
         $query = $this->db->prepare('UPDATE categorias SET `Nombre` = ? , `Descripcion` = ?, `URL_imagen` = ? WHERE `ID_Categorias` = ?' );

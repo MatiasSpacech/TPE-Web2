@@ -80,7 +80,7 @@ class CategoriaController{
     }
     public function deleteCategoria($id){
         if($this->model->getCategoria($id)){
-            $this->model->borrarCategoria($id);
+            $this->view->mostrarError($this->model->borrarCategoria($id));
         }
         else 
             return $this->view->mostrarError('No existe la categoria');
